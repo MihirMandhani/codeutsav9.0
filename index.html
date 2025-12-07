@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fridgie.com - Smart Food Saver</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2909/2909765.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginPage">
+    <div class="login-card">
+      <h1>🧊 Fridgie.com</h1>
+      <p>Digital Fridge Assistant</p>
+      <input id="username" placeholder="Your name" />
+      <input id="password" type="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p id="loginStatus" class="small"></p>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div id="mainPage">
+    <header>
+      <h2>Welcome to Fridgie 🧊</h2>
+      <p>Organize Leftovers, Packaged Items, Veggies & Fruits — Your Smart Kitchen Companion</p>
+    </header>
+
+    <!-- LEFTOVERS -->
+    <div class="section">
+      <h3>🥘 Leftovers</h3>
+      <form id="leftoverForm">
+        <input type="text" id="leftoverName" placeholder="Item (e.g. Rice, Chapati)" required />
+        <input type="text" id="leftoverQty" placeholder="Qty (e.g. 2 bowls)" />
+        <input type="number" id="leftoverDays" placeholder="Days fresh" required />
+        <button type="submit">Add Leftover</button>
+      </form>
+      <table id="leftoverTable">
+        <thead><tr><th>Name</th><th>Quantity</th><th>Days Fresh</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- PACKAGED ITEMS -->
+    <div class="section">
+      <h3>📦 Packaged Items (scan barcode or add manually)</h3>
+      <form id="packagedForm">
+        <input type="text" id="packageBarcode" placeholder="Barcode (paste or scan)" />
+        <button type="button" id="scanBarcodeBtn">Scan Barcode</button>
+        <input type="text" id="packageName" placeholder="Product name (auto from barcode)" required />
+        <input type="text" id="packageQty" placeholder="Quantity (e.g. 200 g)" />
+        <input type="date" id="packageExpiry" placeholder="Expiry date (or auto)" />
+        <button type="submit">Add Packaged Item</button>
+      </form>
+      <div class="small">Tip: If barcode is known in DB, expiry date auto-fills. You can still edit expiry manually.</div>
+      <table id="packageTable">
+        <thead><tr><th>Name</th><th>Quantity</th><th>Expiry Date</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- VEGGIES -->
+    <div class="section">
+      <h3>🥦 Veggies</h3>
+      <form id="veggieForm">
+        <input type="text" id="veggieName" placeholder="Vegetable name (e.g. Tomato)" required />
+        <input type="text" id="veggieQty" placeholder="Qty (e.g. 500 g)" />
+        <input type="number" id="veggieDays" placeholder="Days fresh" required />
+        <button type="submit">Add Veggie</button>
+      </form>
+      <table id="veggieTable">
+        <thead><tr><th>Name</th><th>Quantity</th><th>Days Fresh</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- FRUITS -->
+    <div class="section">
+      <h3>🍎 Fruits</h3>
+      <form id="fruitForm">
+        <input type="text" id="fruitName" placeholder="Fruit name (e.g. Mango)" required />
+        <input type="text" id="fruitQty" placeholder="Qty (e.g. 4 pcs)" />
+        <input type="number" id="fruitDays" placeholder="Days fresh" required />
+        <button type="submit">Add Fruit</button>
+      </form>
+      <table id="fruitTable">
+        <thead><tr><th>Name</th><th>Quantity</th><th>Days Fresh</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- RECIPES -->
+    <div class="section">
+      <h3>🍳 Recipes using All Available Foods</h3>
+      <div id="allRecipeList" class="recipes"></div>
+
+      <h3 style="margin-top:1.25rem">⏳ Recipes for Soon-to-Expire Items</h3>
+      <div id="expiringRecipeList" class="recipes"></div>
+    </div>
+
+    <footer>© 2025 Fridgie.com</footer>
+  </div>
+
+  <!-- SCANNER OVERLAY -->
+  <div id="scannerOverlay">
+    <div id="scannerBox">
+      <h3 style="margin:0 0 0.6rem 0">Scan barcode (close to camera)</h3>
+      <video id="videoElement" autoplay muted playsinline></video>
+      <div style="margin-top:0.6rem;text-align:right">
+        <button onclick="closeScanner()" style="padding:0.45rem 0.7rem;border-radius:6px;border:none;background:#ff6b35;color:white;cursor:pointer">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
